@@ -15,8 +15,8 @@ sbit TLC594_CS = P1^5;
 sbit TLC594_DOUT = P1^6;
 sbit TLC594_CLK = P1^7;
 
-bit Flag = 0;
-bit Flag1 = 0;
+bit Flag = 0; //这个是数码管扫描产生
+bit Flag1 = 0; //这个是AD扫描产生标志
 
 uint8_t ADcount = 0;
 
@@ -50,11 +50,14 @@ void main()
 			ucAdValue = get_ADValue();
 			fAdValue =(float)(ucAdValue * 5.0/255.0);
 			uiAdValue = fAdValue*1000;
-			show_number(uiAdValue);			
+			show_number(uiAdValue);		
+			pwm_out(ucAdValue);
 		}
 		if(Flag)
 		{
-			pwm_out(ucAdValue);
+			Flag = 0;
+			led_scan();
+			
 		}
 	}
 }
@@ -98,8 +101,7 @@ void Timer0_Init() //Initialize the timer.
 void Timer0_ISR() interrupt 1
 {   
     TH0 = T0H;
-    TL0 = T0L;
-	led_scan();
+    TL0 = T0L;	
 	Flag = 1;
 	pwm_timer(255);
     if(ADcount ++ >= 20)

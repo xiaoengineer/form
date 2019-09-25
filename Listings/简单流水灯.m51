@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        09/25/2019  11:18:07  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        09/25/2019  14:46:46  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -48,18 +48,18 @@ LINK MAP OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
             CODE    000BH     0003H     ABSOLUTE     
             CODE    000EH     02C8H     UNIT         ?C?LIB_CODE
             CODE    02D6H     008CH     UNIT         ?C_C51STARTUP
-            CODE    0362H     006AH     UNIT         ?PR?MAIN?MAIN
-            CODE    03CCH     0061H     UNIT         ?PR?_SHOW_NUMBER?DISPLAY
-            CODE    042DH     0059H     UNIT         ?PR?TIMER0_ISR?MAIN
-            CODE    0486H     004AH     UNIT         ?PR?LED_SCAN?DISPLAY
-            CODE    04D0H     0028H     UNIT         ?PR?_PWM_TIMER?PWM
-            CODE    04F8H     0025H     UNIT         ?PR?GET_ADVALUE?MAIN
-            CODE    051DH     0019H     UNIT         ?C_INITSEG
-            CODE    0536H     0010H     UNIT         ?PR?TIMER0_INIT?MAIN
-            CODE    0546H     000AH     UNIT         ?CO?DISPLAY
+            CODE    0362H     006FH     UNIT         ?PR?MAIN?MAIN
+            CODE    03D1H     0061H     UNIT         ?PR?_SHOW_NUMBER?DISPLAY
+            CODE    0432H     0056H     UNIT         ?PR?TIMER0_ISR?MAIN
+            CODE    0488H     004AH     UNIT         ?PR?LED_SCAN?DISPLAY
+            CODE    04D2H     0028H     UNIT         ?PR?_PWM_TIMER?PWM
+            CODE    04FAH     0025H     UNIT         ?PR?GET_ADVALUE?MAIN
+            CODE    051FH     0019H     UNIT         ?C_INITSEG
+            CODE    0538H     0010H     UNIT         ?PR?TIMER0_INIT?MAIN
+            CODE    0548H     000AH     UNIT         ?CO?DISPLAY
 
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 2
 
 
 
@@ -78,6 +78,7 @@ SEGMENT                            DATA_GROUP
   +--> ?PR?GET_ADVALUE?MAIN
   +--> ?PR?_SHOW_NUMBER?DISPLAY
   +--> ?PR?_PWM_OUT?PWM
+  +--> ?PR?LED_SCAN?DISPLAY
 
 ?PR?_SHOW_NUMBER?DISPLAY         0011H    0006H
   +--> ?CO?DISPLAY
@@ -85,7 +86,6 @@ SEGMENT                            DATA_GROUP
 *** NEW ROOT ***************************************************
 
 ?PR?TIMER0_ISR?MAIN              -----    -----
-  +--> ?PR?LED_SCAN?DISPLAY
   +--> ?PR?_PWM_TIMER?PWM
 
 
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 3
 
 
   N:0000H         SYMBOL        XDATASTART
@@ -138,7 +138,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
-  C:042DH         PUBLIC        Timer0_ISR
+  C:0432H         PUBLIC        Timer0_ISR
   D:00C0H         PUBLIC        P4
   D:00C8H         PUBLIC        P5
   B:00A8H.7       PUBLIC        EA
@@ -150,8 +150,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   B:0090H.6       PUBLIC        TLC594_DOUT
   D:0020H         PUBLIC        AdValue
   C:0362H         PUBLIC        main
-  C:04F8H         PUBLIC        get_ADValue
-  C:0536H         PUBLIC        Timer0_Init
+  C:04FAH         PUBLIC        get_ADValue
+  C:0538H         PUBLIC        Timer0_Init
   B:0021H.0       PUBLIC        Flag1
   D:0022H         PUBLIC        ADcount
   D:0098H         PUBLIC        SCON
@@ -179,7 +179,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   C:0362H         LINE#         35
   C:0365H         LINE#         36
   C:0367H         LINE#         38
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 4
 
 
   C:0369H         LINE#         39
@@ -195,63 +195,64 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   C:03A4H         LINE#         52
   C:03BDH         LINE#         53
   C:03C0H         LINE#         54
-  C:03C0H         LINE#         55
-  C:03C3H         LINE#         56
-  C:03C3H         LINE#         57
+  C:03C7H         LINE#         55
+  C:03C7H         LINE#         56
+  C:03CAH         LINE#         57
   C:03CAH         LINE#         58
-  C:03CAH         LINE#         59
+  C:03CCH         LINE#         59
+  C:03CFH         LINE#         61
+  C:03CFH         LINE#         62
   -------         ENDPROC       MAIN
   -------         PROC          GET_ADVALUE
   -------         DO            
   D:0007H         SYMBOL        i
   -------         ENDDO         
-  C:04F8H         LINE#         63
-  C:04F8H         LINE#         64
-  C:04F8H         LINE#         67
-  C:04FAH         LINE#         68
-  C:04FCH         LINE#         69
-  C:04FEH         LINE#         71
-  C:0500H         LINE#         72
-  C:0500H         LINE#         73
-  C:0506H         LINE#         74
-  C:0508H         LINE#         75
-  C:0509H         LINE#         76
-  C:050AH         LINE#         77
-  C:050EH         LINE#         78
-  C:0510H         LINE#         80
-  C:0511H         LINE#         81
-  C:0512H         LINE#         82
-  C:0516H         LINE#         83
-  C:0518H         LINE#         84
-  C:051CH         LINE#         85
+  C:04FAH         LINE#         66
+  C:04FAH         LINE#         67
+  C:04FAH         LINE#         70
+  C:04FCH         LINE#         71
+  C:04FEH         LINE#         72
+  C:0500H         LINE#         74
+  C:0502H         LINE#         75
+  C:0502H         LINE#         76
+  C:0508H         LINE#         77
+  C:050AH         LINE#         78
+  C:050BH         LINE#         79
+  C:050CH         LINE#         80
+  C:0510H         LINE#         81
+  C:0512H         LINE#         83
+  C:0513H         LINE#         84
+  C:0514H         LINE#         85
+  C:0518H         LINE#         86
+  C:051AH         LINE#         87
+  C:051EH         LINE#         88
   -------         ENDPROC       GET_ADVALUE
   -------         PROC          TIMER0_INIT
-  C:0536H         LINE#         88
-  C:0536H         LINE#         89
-  C:0536H         LINE#         90
-  C:0539H         LINE#         91
-  C:053CH         LINE#         92
-  C:053FH         LINE#         93
-  C:0541H         LINE#         94
-  C:0543H         LINE#         95
-  C:0545H         LINE#         96
+  C:0538H         LINE#         91
+  C:0538H         LINE#         92
+  C:0538H         LINE#         93
+  C:053BH         LINE#         94
+  C:053EH         LINE#         95
+  C:0541H         LINE#         96
+  C:0543H         LINE#         97
+  C:0545H         LINE#         98
+  C:0547H         LINE#         99
   -------         ENDPROC       TIMER0_INIT
   -------         PROC          TIMER0_ISR
-  C:042DH         LINE#         98
-  C:044AH         LINE#         100
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 5
 
 
-  C:044DH         LINE#         101
-  C:0450H         LINE#         102
-  C:0453H         LINE#         103
-  C:0455H         LINE#         104
-  C:045CH         LINE#         105
-  C:0466H         LINE#         106
-  C:0466H         LINE#         107
-  C:0469H         LINE#         108
-  C:046BH         LINE#         109
+  C:0432H         LINE#         101
+  C:044FH         LINE#         103
+  C:0452H         LINE#         104
+  C:0455H         LINE#         105
+  C:0457H         LINE#         106
+  C:045EH         LINE#         107
+  C:0468H         LINE#         108
+  C:0468H         LINE#         109
   C:046BH         LINE#         110
+  C:046DH         LINE#         111
+  C:046DH         LINE#         112
   -------         ENDPROC       TIMER0_ISR
   -------         ENDMOD        MAIN
 
@@ -272,41 +273,41 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   B:0090H.0       PUBLIC        COM4
   D:00B8H         PUBLIC        IP
   D:00D8H         PUBLIC        CCON
-  C:03CCH         PUBLIC        _show_number
+  C:03D1H         PUBLIC        _show_number
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0486H         PUBLIC        led_scan
+  C:0488H         PUBLIC        led_scan
   D:0018H         PUBLIC        seg_buff
-  C:0546H         PUBLIC        seg_ment
+  C:0548H         PUBLIC        seg_ment
   D:00D0H         PUBLIC        PSW
   -------         PROC          LED_SCAN
   -------         DO            
   D:0017H         SYMBOL        i
   -------         ENDDO         
-  C:0486H         LINE#         22
-  C:0486H         LINE#         23
-  C:0486H         LINE#         25
-  C:0489H         LINE#         26
-  C:0491H         LINE#         27
-  C:04A0H         LINE#         28
-  C:04A0H         LINE#         37
-  C:04A0H         LINE#         38
-  C:04A6H         LINE#         39
-  C:04A6H         LINE#         40
-  C:04B0H         LINE#         41
-  C:04B0H         LINE#         42
-  C:04BAH         LINE#         43
-  C:04BAH         LINE#         44
-  C:04C2H         LINE#         45
-  C:04C2H         LINE#         46
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 6
+  C:0488H         LINE#         22
+  C:0488H         LINE#         23
+  C:0488H         LINE#         25
+  C:048BH         LINE#         26
+  C:0493H         LINE#         27
+  C:04A2H         LINE#         28
+  C:04A2H         LINE#         37
+  C:04A2H         LINE#         38
+  C:04A8H         LINE#         39
+  C:04A8H         LINE#         40
+  C:04B2H         LINE#         41
+  C:04B2H         LINE#         42
+  C:04BCH         LINE#         43
+  C:04BCH         LINE#         44
+  C:04C4H         LINE#         45
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 6
 
 
-  C:04C9H         LINE#         47
-  C:04C9H         LINE#         48
-  C:04CCH         LINE#         49
-  C:04CDH         LINE#         51
-  C:04CFH         LINE#         52
+  C:04C4H         LINE#         46
+  C:04CBH         LINE#         47
+  C:04CBH         LINE#         48
+  C:04CEH         LINE#         49
+  C:04CFH         LINE#         51
+  C:04D1H         LINE#         52
   -------         ENDPROC       LED_SCAN
   -------         PROC          _SHOW_NUMBER
   D:0011H         SYMBOL        dat
@@ -314,27 +315,27 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   D:0003H         SYMBOL        i
   D:0013H         SYMBOL        buff
   -------         ENDDO         
-  C:03CCH         LINE#         63
-  C:03D0H         LINE#         64
-  C:03D0H         LINE#         68
-  C:03D2H         LINE#         69
-  C:03D2H         LINE#         70
-  C:03E3H         LINE#         71
-  C:03F2H         LINE#         72
-  C:03F6H         LINE#         74
-  C:03F8H         LINE#         75
-  C:03F8H         LINE#         76
-  C:03FFH         LINE#         77
-  C:03FFH         LINE#         78
-  C:0405H         LINE#         79
-  C:0405H         LINE#         81
-  C:0405H         LINE#         82
-  C:040EH         LINE#         84
-  C:0416H         LINE#         85
-  C:0416H         LINE#         86
-  C:0426H         LINE#         87
-  C:0429H         LINE#         88
-  C:042CH         LINE#         89
+  C:03D1H         LINE#         63
+  C:03D5H         LINE#         64
+  C:03D5H         LINE#         68
+  C:03D7H         LINE#         69
+  C:03D7H         LINE#         70
+  C:03E8H         LINE#         71
+  C:03F7H         LINE#         72
+  C:03FBH         LINE#         74
+  C:03FDH         LINE#         75
+  C:03FDH         LINE#         76
+  C:0404H         LINE#         77
+  C:0404H         LINE#         78
+  C:040AH         LINE#         79
+  C:040AH         LINE#         81
+  C:040AH         LINE#         82
+  C:0413H         LINE#         84
+  C:041BH         LINE#         85
+  C:041BH         LINE#         86
+  C:042BH         LINE#         87
+  C:042EH         LINE#         88
+  C:0431H         LINE#         89
   -------         ENDPROC       _SHOW_NUMBER
   -------         ENDMOD        DISPLAY
 
@@ -356,12 +357,12 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   D:0088H         PUBLIC        TCON
   D:001EH         PUBLIC        PWM_CYCLE
   B:0090H.4       PUBLIC        PWM_OUT_IO
-  C:04D0H         PUBLIC        _pwm_timer
+  C:04D2H         PUBLIC        _pwm_timer
   D:00D0H         PUBLIC        PSW
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 7
+
+
   -------         PROC          _PWM_OUT
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 7
-
-
   D:0006H         SYMBOL        cycle
   C:0003H         LINE#         10
   C:0003H         LINE#         11
@@ -373,22 +374,22 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   -------         DO            
   D:001CH         SYMBOL        cnt
   -------         ENDDO         
-  C:04D0H         LINE#         16
-  C:04D0H         LINE#         17
-  C:04D0H         LINE#         19
-  C:04D8H         LINE#         20
-  C:04DFH         LINE#         21
-  C:04DFH         LINE#         22
-  C:04E4H         LINE#         23
-  C:04E6H         LINE#         24
-  C:04E7H         LINE#         25
-  C:04F2H         LINE#         26
-  C:04F2H         LINE#         27
-  C:04F4H         LINE#         28
-  C:04F5H         LINE#         30
-  C:04F5H         LINE#         31
-  C:04F7H         LINE#         32
-  C:04F7H         LINE#         34
+  C:04D2H         LINE#         16
+  C:04D2H         LINE#         17
+  C:04D2H         LINE#         19
+  C:04DAH         LINE#         20
+  C:04E1H         LINE#         21
+  C:04E1H         LINE#         22
+  C:04E6H         LINE#         23
+  C:04E8H         LINE#         24
+  C:04E9H         LINE#         25
+  C:04F4H         LINE#         26
+  C:04F4H         LINE#         27
+  C:04F6H         LINE#         28
+  C:04F7H         LINE#         30
+  C:04F7H         LINE#         31
+  C:04F9H         LINE#         32
+  C:04F9H         LINE#         34
   -------         ENDPROC       _PWM_TIMER
   -------         ENDMOD        PWM
 
@@ -418,8 +419,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\简单流水灯 (?C_STARTUP)
   C:02C8H         PUBLIC        ?C?LNEG
   -------         ENDMOD        ?C?LNEG
 
-Program Size: data=35.2 xdata=0 code=1357
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  11:18:07  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/25/2019  14:46:46  PAGE 8
 
 
+Program Size: data=35.2 xdata=0 code=1359
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

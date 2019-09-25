@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   DISPLAY                                                               09/25/2019 11:18:06 PAGE 1   
+C51 COMPILER V9.54   DISPLAY                                                               09/25/2019 14:46:45 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE DISPLAY
@@ -62,7 +62,7 @@ line level    source
   52   1      }
   53          
   54          /*
-C51 COMPILER V9.54   DISPLAY                                                               09/25/2019 11:18:06 PAGE 2   
+C51 COMPILER V9.54   DISPLAY                                                               09/25/2019 14:46:45 PAGE 2   
 
   55          函数名称：show_number(uint8_t dat)
   56          参数： u8 mode, u16 dat
