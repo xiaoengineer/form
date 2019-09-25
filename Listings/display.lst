@@ -1,0 +1,115 @@
+C51 COMPILER V9.54   DISPLAY                                                               09/25/2019 11:18:06 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DISPLAY
+OBJECT MODULE PLACED IN .\Objects\display.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE HARDWARE\display.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\HARDWARE) DEBUG OBJ
+                    -ECTEXTEND PRINT(.\Listings\display.lst) OBJECT(.\Objects\display.obj)
+
+line level    source
+
+   1          #include "display.h"
+   2          
+   3          typedef unsigned int uint16_t;
+   4          typedef unsigned char uint8_t;
+   5          
+   6          uint8_t code seg_ment[] ={0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8,0x80, 0x90};
+   7          uint8_t seg_buff[4] = {0xff, 0xff,  0xff ,0xff};
+   8          
+   9          sbit COM1 = P1^3;
+  10          sbit COM2 = P1^2;
+  11          sbit COM3 = P1^1;
+  12          sbit COM4 = P1^0;
+  13          
+  14          /*
+  15          函数名称：show_number(u8 mode, u16 dat)
+  16          参数： void
+  17          返回值： void
+  18          说明：更新seg_buff[]
+  19          作者：王慧云
+  20          时间：2019.3.26
+  21          */
+  22          void led_scan(void)
+  23          {
+  24   1              static uint8_t i = 0;
+  25   1              P3 = 0XFF;
+  26   1              P3 = seg_buff[i];
+  27   1              switch(i)
+  28   1              {
+  29   2      //              case 0: 
+  30   2      //                      COM1 = 0; COM2 = 1; COM3 = 1; COM4 = 1; break;
+  31   2      //              case 1: 
+  32   2      //                      COM1 = 1; COM2 = 0; COM3 = 1; COM4 = 1; break;
+  33   2      //              case 2: 
+  34   2      //                      COM1 = 1; COM2 = 1; COM3 = 0; COM4 = 1; break;
+  35   2      //              case 3: 
+  36   2      //                      COM1 = 1; COM2 = 1; COM3 = 1; COM4 = 0; break;  
+  37   2                      case 0: 
+  38   2                              COM1 = 1; COM2 = 0; COM3 = 0; COM4 = 0; break;
+  39   2                      case 1: 
+  40   2                              COM1 = 0; COM2 = 1; COM3 = 0; COM4 = 0; break;
+  41   2                      case 2: 
+  42   2                              COM1 = 0; COM2 = 0; COM3 = 1; COM4 = 0; break;
+  43   2                      case 3: 
+  44   2                              COM1 = 0; COM2 = 0; COM3 = 0; COM4 = 1; break;  
+  45   2              }
+  46   1              if(i >= 3)
+  47   1              {
+  48   2                      i = 0;
+  49   2              }
+  50   1              else 
+  51   1                      i ++;
+  52   1      }
+  53          
+  54          /*
+C51 COMPILER V9.54   DISPLAY                                                               09/25/2019 11:18:06 PAGE 2   
+
+  55          函数名称：show_number(uint8_t dat)
+  56          参数： u8 mode, u16 dat
+  57          返回值： void
+  58          说明：  mode是显示模式选择0为显示频率， 1为显示电压,2为关
+  59                          dat为显示的数据
+  60          作者：王慧云
+  61          时间：2019.3.26
+  62          */
+  63          void show_number(uint16_t dat)
+  64          {
+  65   1              char i;
+  66   1              uint8_t buff[4];
+  67   1              
+  68   1              for(i = 0; i < 4; i ++)
+  69   1              {
+  70   2                      buff[i] = dat % 10;
+  71   2                      dat = dat / 10;
+  72   2              }
+  73   1              
+  74   1              for(i = 3; i >= 0; i --)
+  75   1              {
+  76   2                      if(buff[i] == 0)
+  77   2                      {
+  78   3                              seg_buff[i] = 0xC0;
+  79   3                      }
+  80   2                      else
+  81   2                              break;
+  82   2              }
+  83   1              
+  84   1              for(; i >= 0; i --)
+  85   1              {
+  86   2                      seg_buff[i] = seg_ment[buff[i]];
+  87   2              }
+  88   1              seg_buff[3] = seg_buff[3] & 0x7f;
+  89   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    171    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

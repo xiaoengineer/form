@@ -1,0 +1,1 @@
+"HARDWARE\display.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\HARDWARE) DEBUG OBJECTEXTEND PRINT(.\Listings\display.lst) OBJECT(.\Objects\display.obj)
